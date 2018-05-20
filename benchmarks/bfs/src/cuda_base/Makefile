@@ -13,18 +13,38 @@ bfs-atomic: $(SRC) bfs_topo_atomic.h
 	$(NVCC) $(EXTRA) -DVARIANT=1 -o $@ $<
 	cp $@ $(BIN)
 
+bfs-atomic.cubin: $(SRC) bfs_topo_atomic.h
+	$(NVCC) -cubin $(EXTRA) -DVARIANT=1 -o $@ $<
+	cp $@ $(BIN)
+
 bfs-merrill: $(SRC) bfs_merrill.h $(B40_DIR)
 	$(NVCC) $(EXTRA) $(B40C_INC) -DVARIANT=2 -o $@ $<
+	cp $@ $(BIN)
+
+bfs-merrill.cubin: $(SRC) bfs_merrill.h $(B40_DIR)
+	$(NVCC) -cubin $(EXTRA) $(B40C_INC) -DVARIANT=2 -o $@ $<
 	cp $@ $(BIN)
 
 bfs-wlw: $(SRC) bfs_worklistw.h ../../../../include/worklist.h
 	$(NVCC) $(EXTRA) $(B40C_INC) -DVARIANT=3 -o $@ $<
 	cp $@ $(BIN)
 
+bfs-wlw.cubin: $(SRC) bfs_worklistw.h ../../../../include/worklist.h
+	$(NVCC) -cubin $(EXTRA) $(B40C_INC) -DVARIANT=3 -o $@ $<
+	cp $@ $(BIN)
+
 bfs-wla: $(SRC) bfs_worklista.h
 	$(NVCC) $(EXTRA) -DVARIANT=5 -o $@ $<
 	cp $@ $(BIN)
 
+bfs-wla.cubin: $(SRC) bfs_worklista.h
+	$(NVCC) -cubin $(EXTRA) -DVARIANT=5 -o $@  $<
+	cp $@ $(BIN)
+
 bfs-wlc: $(SRC) bfs_worklistc.h ../../../../include/worklistc.h
 	$(NVCC) $(EXTRA) -DVARIANT=6 -o $@ $<
+	cp $@ $(BIN)
+
+bfs-wlc.cubin: $(SRC) bfs_worklistc.h ../../../../include/worklistc.h
+	$(NVCC) -cubin $(EXTRA) -DVARIANT=6 -o $@ $<
 	cp $@ $(BIN)
